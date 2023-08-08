@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import * as fs from 'node:fs/promises';
+import {ViteEjsPlugin} from "vite-plugin-ejs";
 
 // vite.config.js
 export default defineConfig(async ({ command, mode, ssrBuild }) => {
@@ -8,8 +9,7 @@ export default defineConfig(async ({ command, mode, ssrBuild }) => {
 
     //Development preview 
     try {
-        const htmlFile = await fs.readFile('./src/banner.html', { encoding: 'utf8' });
-        console.log(htmlFile)
+        // const htmlFile = await fs.readFile('./src/banner.html', { encoding: 'utf8' });
         await fs.writeFile(
           'index.html',
           `
@@ -22,7 +22,7 @@ export default defineConfig(async ({ command, mode, ssrBuild }) => {
                 </head>
                 <body>
                     <banner-container>
-                        ${htmlFile}
+                      <%- include('./src/banner.html') %>
                     </banner-container>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
                     <script src='src/main.js'></script>
@@ -37,6 +37,7 @@ export default defineConfig(async ({ command, mode, ssrBuild }) => {
 
     // Development Config
     const devConfig = {
+      plugins: [ViteEjsPlugin()],
       server: {
         watch: {
           include: 'src/banner.html'
