@@ -1,10 +1,14 @@
 (function (currentScript) {
   //currentScript: is the last script where the js will run.
+  
+  //MAIN VARIABLES
+  const timeline = gsap.timeline()
+  const assetContainer = document.querySelector(".banner");
+  const heroImage = document.querySelector('.hero-image');
+  const data = {}
+
+  //PRODUCTION MODE
   if (window.revjet && window.revjet.elements_api) {
-    const timeline = gsap.timeline()
-    const assetContainer = document.querySelector(".banner");
-    const heroImage = document.querySelector('.hero-image');
-    const data = {}
 
     //BEFORE PERSONALIZATION
     window.revjet.elements_api.listen('before_personalization', function () {
@@ -54,6 +58,18 @@
 
   } else {
     document.querySelector('.banner').style.visibility = 'visible';
+    
+    //DEV MODE
+    if(window.configurationServerMode === 'development') {
+      console.log('DEVELOPMENT MODE')
+
+      //WRITE YOUR DEV CODE HERE.
+      //IF NEEDED: content should be reflect in the API production code.
+      // heroImage.style.backgroundImage = `url(src/img/hero_image.jpeg)`;
+      
+      //ANIMATION: this animation will be use for dev and production mode
+      animation(timeline);
+    }
   }
 
 })(document.currentScript ||

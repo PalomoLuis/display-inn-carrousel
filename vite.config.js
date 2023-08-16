@@ -19,13 +19,18 @@ export default defineConfig(async ({ command, mode, ssrBuild }) => {
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>Banner</title>
+                    <script type='module'>
+                      // const dev = import.meta.env.DEV
+                      window.configurationServerMode = import.meta.env.MODE
+                      // console.log('MODE: ', window.configurationServerMode)
+                    </script>
                 </head>
                 <body>
                     <banner-container>
                       <%- include('./src/banner.html') %>
                     </banner-container>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-                    <script src='src/main.js'></script>
+                    <script src='src/main.js' type="module"></script>
                     
                 </body>
             </html>

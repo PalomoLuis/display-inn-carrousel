@@ -12,6 +12,7 @@
 }
 
 .hero-image {
+  background-image: url(img/hero_image.jpeg);
   background-size: cover;
 }
 
