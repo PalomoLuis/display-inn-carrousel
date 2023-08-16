@@ -12,10 +12,50 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
         <script>
-        console.log(gsap)
-const tl = gsap.timeline()
+        (function (currentScript) {
+  //currentScript: is the last script where the js will run.
+  if (window.revjet && window.revjet.elements_api) {
+    const assetContainer = document.querySelector(".banner");
 
-window.onload = () => {
-  gsap.to('.title', { duration: 1, x: 30, y: 30, ease: Power1.easeOut })
-}
+    //BEFORE PERSONALIZATION
+    window.revjet.elements_api.listen('before_personalization', function () {
+      revjet.elements_api.updateDataFeed(currentScript, function (dataFeed) {
+        const newFeed = JSON.parse(JSON.stringify(dataFeed))
+        console.log(newFeed)
+        return newFeed;
+      })
+    }, undefined, currentScript);
+
+    //BEFORE SHOW
+    window.revjet.elements_api.listen('before_show', function () {
+    }, undefined, currentScript)
+
+    //SHOW
+    window.revjet.elements_api.listen('show', function () {
+    }, undefined, currentScript);
+
+    //MAIN EXIT
+    assetContainer.addEventListener('click', function (event) {
+      revjet.elements_api.goToLP(event);
+    }, false);
+
+  } else {
+    document.querySelector('.banner').style.visibility = 'visible';
+  }
+
+})(document.currentScript ||
+  document.getElementsByTagName('script')[document.getElementsByTagName('script').length - 1]);
+
+// const timeline = gsap.timeline()
+
+// window.onload = () => {
+//   animation(timeline)
+// }
+
+// function animation (tl) {
+//   tl.add('frame1', 1)
+//   tl.to('.title', { duration: 1, x: 30, y: 30, ease: Power1.easeOut }, 'frame1')
+  
+//   return tl;
+// }
         </script>
