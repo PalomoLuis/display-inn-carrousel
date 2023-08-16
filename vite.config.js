@@ -26,6 +26,9 @@ export default defineConfig(async ({ command, mode, ssrBuild }) => {
                       window.configurationServerMode = import.meta.env.MODE
                       // console.log('MODE: ', window.configurationServerMode)
                     </script>
+                    <style>
+                      @import url(src/style.css);
+                    </style>
                 </head>
                 <body>
                     <banner-container>
@@ -61,12 +64,16 @@ export default defineConfig(async ({ command, mode, ssrBuild }) => {
     try {
       const javascriptFile = await fs.readFile('src/main.js', { encoding: 'utf8' });
       const htmlFile = await fs.readFile('src/banner.html', { encoding: 'utf8' });
+      const cssFile = await fs.readFile('src/style.css', { encoding: 'utf8' });
       await fs.writeFile(
         'temporal.html',
         `${htmlFile}
+        <style>
+          ${cssFile}
+        </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
         <script>
-        ${javascriptFile}
+          ${javascriptFile}
         </script>`
       );
     } catch (err) {

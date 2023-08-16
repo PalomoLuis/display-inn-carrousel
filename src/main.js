@@ -91,5 +91,5 @@ function animation (tl) {
 
 //DATA SETTER
 function dataSetter( feed, elements ) {
-  elements.heroImage.style.backgroundImage = `url(./${feed.heroImage})`;
+  elements.heroImage.style.backgroundImage = `url(${feed.heroImage})`;
 }
