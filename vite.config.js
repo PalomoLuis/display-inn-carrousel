@@ -20,6 +20,8 @@ export default defineConfig(async ({ command, mode, ssrBuild }) => {
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>Banner</title>
                     <script type='module'>
+                      import localData from './src/localData.js';
+                      window.localData = localData();
                       // const dev = import.meta.env.DEV
                       window.configurationServerMode = import.meta.env.MODE
                       // console.log('MODE: ', window.configurationServerMode)

@@ -4,7 +4,10 @@
   //MAIN VARIABLES
   const timeline = gsap.timeline()
   const assetContainer = document.querySelector(".banner");
-  const heroImage = document.querySelector('.hero-image');
+  const htmlElements = {
+    heroImage: document.querySelector('.hero-image'),
+    title: document.querySelector('.title')
+  }
   const data = {}
 
   //PRODUCTION MODE
@@ -24,7 +27,8 @@
         console.log('Feed: ', newFeed)
         console.log('Data: ', data)
 
-        heroImage.style.backgroundImage = `url('${data.heroImage}')`;
+        dataSetter(data, htmlElements)
+        // heroImage.style.backgroundImage = `url('${data.heroImage}')`;
         return newFeed;
       })
     }, undefined, currentScript);
@@ -66,6 +70,8 @@
       //WRITE YOUR DEV CODE HERE.
       //IF NEEDED: content should be reflect in the API production code.
       // heroImage.style.backgroundImage = `url(src/img/hero_image.jpeg)`;
+      data.localData = window.localData;
+      dataSetter(data.localData, htmlElements)
       
       //ANIMATION: this animation will be use for dev and production mode
       animation(timeline);
@@ -81,4 +87,9 @@ function animation (tl) {
   tl.from('.hero-image', { duration: 1, y: -300, ease: Power2.easeOut }, 'frame1')
   
   return tl;
+}
+
+//DATA SETTER
+function dataSetter( feed, elements ) {
+  elements.heroImage.style.backgroundImage = `url(./${feed.heroImage})`;
 }
