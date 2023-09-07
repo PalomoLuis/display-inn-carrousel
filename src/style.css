@@ -1,3 +1,45 @@
+@font-face {
+  font-family: "TiemposText-Regular";
+  src: url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/TiemposText/TiemposText-Regular.eot");
+  src: url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/TiemposText/TiemposText-Regular.eot?#iefix")
+    format("embedded-opentype"),
+    url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/TiemposText/TiemposText-Regular.woff2")
+    format("woff2"),
+    url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/TiemposText/TiemposText-Regular.woff")
+    format("woff"),
+    url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/TiemposText/TiemposText-Regular.ttf")
+    format("truetype"),
+    url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/TiemposText/TiemposText-Regular.svg#TiemposText-Regular")
+    format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "HelveticaNowText-Regular";
+  src: url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/HelveticaNowText/HelveticaNowText-Regular.eot");
+  src: url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/HelveticaNowText/HelveticaNowText-Regular.eot?#iefix")
+    format("embedded-opentype"),
+    url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/HelveticaNowText/HelveticaNowText-Regular.woff2")
+    format("woff2"),
+    url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/HelveticaNowText/HelveticaNowText-Regular.woff")
+    format("woff"),
+    url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/HelveticaNowText/HelveticaNowText-Regular.ttf")
+    format("truetype"),
+    url("//cdn.revjet.com/~cdn/Ads/ad_shared/fonts/HelveticaNowText/HelveticaNowText-Regular.svg#HelveticaNowText-Regular")
+    format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .fullsize {
   position: absolute;
   top: 0;
@@ -6,17 +48,56 @@
   height: 250px;
 }
 
-.banner {
+.banner,
+.banner * {
   box-sizing: border-box;
+}
+.content {
+  opacity: 0;
+}
+.mainExit {
   border: 1px solid black;
 }
 
+ /* ANIMATION 1 / FRAME 1 */
 .hero-image {
   background-image: url(img/hero_image.jpeg);
   background-size: cover;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: 500;
+.frame1.logo-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 47px;
+}
+
+.frame1.whiteblock1 {
+  position: absolute;
+  top: 250px;
+  left: 0;
+  width: 300px;
+  height: 250px;
+  background-color: #ffffff;
+}
+.frame1.whiteblock2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 40px;
+  background-color: #ffffff;
+}
+
+.frame1.title-container {
+  position: absolute;
+  width: 260px;
+  height: 65px;
+  top: 200px;
+  left: 15px;
+  font-family: "TiemposText-Regular", Times, serif;
+  font-size: 18px;
+  letter-spacing: -0.2px;
+  color: #1a1a1a;
 }

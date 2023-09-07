@@ -6,17 +6,18 @@
   const assetContainer = document.querySelector(".banner");
   const htmlElements = {
     heroImage: document.querySelector('.hero-image'),
-    title: document.querySelector('.title')
+    campainClaim: document.querySelector('.campainClaim'),
+    enlargedProduct: document.querySelector('.enlargedProduct')
   }
   const data = {}
 
-  //PRODUCTION MODE
+  ///////////////// PRODUCTION MODE ///////////////////
   if (window.revjet && window.revjet.elements_api) {
 
     //BEFORE PERSONALIZATION
     window.revjet.elements_api.listen('before_personalization', function () {
       revjet.elements_api.updateDataFeed(currentScript, function (dataFeed) {
-        const feed = JSON.parse(JSON.stringify(dataFeed))
+        const feed = JSON.parse(JSON.stringify(dataFeed)) //Complete Feed
         const newFeed = feed.filter(el => el["brand"])
         data.heroImage = feed.filter(el => el["featured_image_link"])[0].doa13554
         data.title = newFeed.filter(el => el["title"])
@@ -63,7 +64,7 @@
   } else {
     document.querySelector('.banner').style.visibility = 'visible';
     
-    //DEV MODE
+    ///////////////// DEV MODE ///////////////////
     if(window.configurationServerMode === 'development') {
       console.log('DEVELOPMENT MODE')
 
@@ -81,15 +82,39 @@
 })(document.currentScript ||
   document.getElementsByTagName('script')[document.getElementsByTagName('script').length - 1]);
 
-//ANIMATION
-function animation (tl) {
-  tl.add('frame1', 1)
-  tl.from('.hero-image', { duration: 1, y: -300, ease: Power2.easeOut }, 'frame1')
-  
-  return tl;
-}
 
 //DATA SETTER
 function dataSetter( feed, elements ) {
-  elements.heroImage.style.backgroundImage = `url(${feed.heroImage})`;
+  console.log('Complete data: ', feed)
+
+  //DEFINNING DATA
+  const frame1Data = feed.filter(value => value.doa13554)[0]
+  const image1 = frame1Data.doa13867
+  const campainClaim = frame1Data.headline
+  const enlargedProduct = frame1Data.subline
+
+  //SET DATA
+  elements.heroImage.style.backgroundImage = `url(${image1})`
+  elements.campainClaim.innerText = campainClaim
+  elements.enlargedProduct.innerText = enlargedProduct
+}
+
+
+//ANIMATION
+function animation (tl) {
+  tl.add('frame1', 1)
+  tl.to('.content', { duration: 0.3, opacity: 1 }, 'frame1')
+  tl.to('.frame1.logo-mark', { duration: 0.4, scale:1.4 }, 'frame1+=0.3') 
+  tl.to('.frame1.logo-mark', { duration: 0.4, scale: 1 }, '>')
+  tl.to('.frame1.logo-mark', { duration: 0.2, scale: 1.25 }, '>')
+  tl.to('.frame1.logo-mark', { duration: 0.2, scale: 0 }, '>')
+
+  tl.from('.frame1.whiteblock2', { duration: 0.5, y: '100%', ease: Power1.easeOut }, 'frame1+=1.6')
+  tl.to('.frame1.whiteblock1', { duration: 1, y: -78, ease: Power1.easeInOut }, 'frame1+=1.8')
+  tl.to('.frame1.whiteblock1', { duration: 1.8, y: -116, ease: Power1.easeInOut }, '>')
+  tl.to('.frame1.whiteblock1', { duration: 1, y: -250, ease: Power1.easeInOut }, '>')
+
+  // tl.from('.hero-image', { duration: 1, y: -300, ease: Power2.easeOut }, 'frame1+=0.3')
+  
+  return tl;
 }
