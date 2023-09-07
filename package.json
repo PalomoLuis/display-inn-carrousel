@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config vite.config.js",
-    "build": "vite build",
+    "build": "vite build && node ./zipfile.js --name banner",
     "preview": "vite preview"
   },
   "devDependencies": {
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "adm-zip": "^0.5.10",
     "vite-plugin-ejs": "^1.6.4"
   }
 }
