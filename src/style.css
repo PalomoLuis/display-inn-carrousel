@@ -54,9 +54,12 @@
 }
 .content {
   opacity: 0;
+  overflow: hidden;
 }
 .mainExit {
   border: 1px solid black;
+  pointer-events: none;
+  z-index: 99;
 }
 
  /* ANIMATION 1 / FRAME 1 */
@@ -81,6 +84,7 @@
   height: 250px;
   background-color: #ffffff;
 }
+
 .frame1.whiteblock2 {
   position: absolute;
   bottom: 0;
@@ -88,16 +92,50 @@
   width: 300px;
   height: 40px;
   background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  z-index: 9;
+}
+
+.cta {
+  position: relative;
+  font-family: 'HelveticaNowText-Regular', sans-serif;
+  font-size: 12px;
+  letter-spacing: -0.3px;
+}
+.cta::after {
+  content: url('./img/Icon-Arrow.svg');
+  position: absolute;
+  top: 1px;
+  right: -19px;
 }
 
 .frame1.title-container {
   position: absolute;
   width: 260px;
   height: 65px;
-  top: 200px;
+  top: 250px;
   left: 15px;
   font-family: "TiemposText-Regular", Times, serif;
   font-size: 18px;
   letter-spacing: -0.2px;
   color: #1a1a1a;
+  .campainClaim {
+    font-family: 'HelveticaNowText-Regular', sans-serif;
+    font-size: 12px;
+  }
+  .enlargedProduct, .focusedCopy {
+    line-height: 1;
+  }
+}
+
+#carrousel {
+  width: 300px;
+  height: 195px;
+  position: absolute;
+  top: 300px;
+  left: 0;
+  border: 1px solid black;
 }
