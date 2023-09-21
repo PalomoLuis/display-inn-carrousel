@@ -1,4 +1,5 @@
 import * as fs from 'node:fs/promises';
+import path from 'node:path';
 
 /**
  * @param { string } htmlFile - The HTML file path.
@@ -30,4 +31,35 @@ const buildAllInOneHTML = async ( htmlFile, cssFile, javascriptFile ) => {
     }
 }
 
-buildAllInOneHTML('./src/banner.html', './src/style.css', './build/main.js')
+const removeFiles = async (filesPathList = []) => {
+    filesPathList.map( async (filePath) => {
+        fs.unlink(filePath, (err) => {
+            if (err) {
+                console.error('\x1b[31m%s\x1b[0m', 'ERROR: File not found')
+                console.error('\x1b[31m%s\x1b[0m', 'ERROR Message: ', err)
+            } else {
+                console.log('\x1b[32m%s\x1b[0m', `${file} deleted`)
+            }
+        })
+    })
+}
+
+const build = async () => {
+    await buildAllInOneHTML('./src/banner.html', './src/style.css', './build/main.js')
+
+    const buildPath = './build'
+    const temporalFiles = await fs.readdir(buildPath, (err, files) => {
+        if (err) {
+            console.error('\x1b[31m%s\x1b[0m', 'ERROR: File not found')
+            console.error('\x1b[31m%s\x1b[0m', 'ERROR Message: ', err)
+            return
+        }
+    })
+    const filesToRemove = temporalFiles
+        .filter(file => file != 'index.html')
+        .map(file => `${buildPath}/${file}`)
+    
+    await removeFiles(filesToRemove)
+}
+
+build()
