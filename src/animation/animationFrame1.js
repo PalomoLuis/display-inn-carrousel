@@ -1,4 +1,4 @@
-export default function animation () {
+function animationFrame1 () {
     let tl = gsap.timeline()
 
     tl.add('frame1', 1)
@@ -19,14 +19,11 @@ export default function animation () {
     tl.to('.frame1.whiteblock1', { duration: 1, y: -260, height: 260, ease: Power1.easeOut }, 'frame1+=4.5')
     tl.to('.frame1.title-container', { duration: 1.2, y: -280, opacity: 0, ease: Power1.easeOut }, 'frame1+=4.8')
   
-    //carrousel timeline
+    //carrousel intro
     tl.add('frame2', 'frame1+=5')
     tl.to('#carrousel', { duration: 1.5, y: -285, ease: Power2.easeOut }, 'frame2')
-  
-    //End timeline
-
 
     return tl;
 }
 
-// export { animation }
+export { animationFrame1 }

@@ -1,5 +1,7 @@
-import animation from './animation.js';
 import dataSetter from './dataSetter.js';
+import { animationFrame1 } from './animation/animationFrame1.js';
+import { endTimelineOtro } from './animation/endTimeline_outro.js';
+import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js';
 
 (async function (currentScript) {
   //currentScript: is the last script where the js will run.
@@ -40,7 +42,7 @@ import dataSetter from './dataSetter.js';
         if (entry.isIntersecting) {
           observer.unobserve(entry.target);
           setTimeout(() => {
-            timeline.add(animation())
+            timeline.add(animationFrame1())
           }, 1000);
           return
         }
@@ -76,7 +78,7 @@ import dataSetter from './dataSetter.js';
 
       //ANIMATION: this animation will be use for dev and production mode
       GSDevTools.create();
-      timeline.add(animation())
+      timeline.add(animationFrame1())
 
       // document.addEventListener("DOMContentLoaded", () => {
       // });
