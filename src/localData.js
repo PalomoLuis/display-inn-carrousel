@@ -1,4 +1,4 @@
-export default function localData () {
+function localData () {
     // return {
     //     "heroImage": "./src/img/hero_image.jpeg"
     // }
@@ -94,3 +94,5 @@ export default function localData () {
         }
     ]
 }
+
+export { localData }

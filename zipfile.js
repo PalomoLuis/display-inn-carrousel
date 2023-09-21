@@ -7,7 +7,7 @@ import AdmZip from 'adm-zip';
 console.log('start zipping')
 
 const zipping = async () => {
-    const filePath = './build/temporal.html'
+    const filePath = './build/index.html'
     let zipFilePath = './build/final.zip'
 
     //Looking if file exist

@@ -1,11 +1,11 @@
 {
   "name": "display-inn",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite --config vite.config.js",
-    "build": "vite build && node ./zipfile.js --name banner",
+    "build": "vite build && node ./buildFiles.js && node ./zipfile.js --name index",
     "preview": "vite preview"
   },
   "devDependencies": {
