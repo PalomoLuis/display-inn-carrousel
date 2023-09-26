@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "eslint": "^8.50.0",
+    "gsap": "file:gsap-bonus.tgz",
     "vite": "^4.4.5"
   },
   "dependencies": {

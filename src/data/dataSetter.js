@@ -1,3 +1,6 @@
+import setupFeedImages from "./setupFeedImages"
+import currencySetter from "./currency"
+
 /**
  * @param {Array} feed - Data feed.
  * @param { Object } elements - An object with all the HTML elements.
@@ -19,15 +22,29 @@ export default function dataSetter( feed, elements ) {
     const enlargedProduct = frame1Data.subline
     const focusedCopy = frame1Data.tagline
     const cta = frame1Data.cta
+
+    //Carousel Data
+    const carouselData = feed.filter(value => value.brand).slice(0, 4);
+    const additionFeed = JSON.parse(JSON.stringify(feed)).filter(el => el["original_price_label"])[0];
+
+    if (additionFeed && additionFeed.sku_curation) setupFeedImages(carouselData, additionFeed.sku_curation)
+    currencySetter(carouselData, additionFeed)
+
+    console.log('Carrousel data: ', carouselData)
   
-    const frame2Data = feed.filter(value => value.brand)
-    console.log('frame 2 Data for Carrousel: ', frame2Data)
-  
-    //SET DATA
+    //SETTING DATA
     elements.heroImage.style.backgroundImage = `url(${image1})`
     elements.campainClaim.innerText = campainClaim
     elements.enlargedProduct.innerText = enlargedProduct
     elements.focusedCopy.innerText = focusedCopy
     elements.cta.innerText = cta
+
+    //Carousel Data setter
+    let num = 0
+    elements.productImages.forEach((element, i) => {
+      if(num > 3) num = 0 
+      element.src = `${carouselData[num].image_link}`
+      num++
+    });
   
   }

@@ -21,7 +21,7 @@ function animationFrame1 () {
   
     //carrousel intro
     tl.add('frame2', 'frame1+=5')
-    tl.to('#carrousel', { duration: 1.5, y: -285, ease: Power2.easeOut }, 'frame2')
+    tl.to('#carrousel', { duration: 1.5, y: -(300 - 16), ease: Power2.easeOut }, 'frame2')
 
     return tl;
 }

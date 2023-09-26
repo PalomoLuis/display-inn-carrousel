@@ -133,9 +133,51 @@
 
 #carrousel {
   width: 300px;
-  height: 195px;
+  height: 194px;
   position: absolute;
   top: 300px;
   left: 0;
   border: 1px solid black;
+  .main-carousel-container {
+    width: 300px;
+    height: 194px;
+    position: absolute;
+    top: 0;
+    left: 0;    
+    .main-carousel-item-wrapper {
+      width: auto;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      /* flex-wrap: wrap; */
+      .product-card {
+        height: 194px;
+        width: 153px;
+        .product-image {
+          height: 194px;
+          width: 153px;
+          object-fit: cover;
+          object-position: center 0%;
+        }
+      }
+    }
+    .carousel-next-button, .carousel-prev-button {
+      position: absolute;
+      z-index: 2;
+      bottom: 35px;
+      right: 17px;
+      width: 14px;
+      height: 15px;
+      color: #1a1a1a66;
+      background-color: #ffffffcc;
+      cursor: pointer;
+    }
+    .carousel-prev-button {
+      right: unset;
+      left: 17px;
+    }
+  }
 }

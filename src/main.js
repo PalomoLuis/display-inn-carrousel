@@ -1,21 +1,17 @@
-import dataSetter from './dataSetter.js';
-import { animationFrame1 } from './animation/animationFrame1.js';
-import { endTimelineOtro } from './animation/endTimeline_outro.js';
-import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js';
+import { DOMElements } from './data/domElements.js'
+import dataSetter from './data/dataSetter.js'
+import { animationFrame1 } from './animation/animationFrame1.js'
+import { endTimelineOtro } from './animation/endTimeline_outro.js'
+import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js'
+import { carouselAmnimation } from './animation/carouselAnimation.js'
 
 (async function (currentScript) {
   //currentScript: is the last script where the js will run.
   
   //MAIN VARIABLES
   const timeline = gsap.timeline()
-  const assetContainer = document.querySelector(".banner");
-  const htmlElements = {
-    heroImage: document.querySelector('.hero-image'),
-    campainClaim: document.querySelector('.campainClaim'),
-    enlargedProduct: document.querySelector('.enlargedProduct'),
-    focusedCopy: document.querySelector('.focusedCopy'),
-    cta: document.querySelector('.cta')
-  }
+  const assetContainer = document.querySelector(".banner")
+  const htmlElements = {...DOMElements()}
   const data = {}
 
   ///////////////// PRODUCTION MODE ///////////////////
@@ -43,6 +39,7 @@ import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js';
           observer.unobserve(entry.target);
           setTimeout(() => {
             timeline.add(animationFrame1())
+            timeline.add(carouselAmnimation(htmlElements))
           }, 1000);
           return
         }
@@ -56,6 +53,7 @@ import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js';
 
     //SHOW
     window.revjet.elements_api.listen('show', function () {
+
     }, undefined, currentScript);
 
     //MAIN EXIT
@@ -69,7 +67,9 @@ import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js';
     ///////////////// DEV MODE ///////////////////
     if(window.configurationServerMode === 'development') {
       console.log('DEVELOPMENT MODE')
-      const DATA = await import('./localData.js')
+      const DATA = await import('./data/localData.js')
+      const { GSDevTools } = await import('gsap/GSDevTools')
+      const devTimeline = gsap.timeline()
 
       //WRITE YOUR DEV CODE HERE.
       //IF NEEDED: content should be reflect in the API production code.
@@ -77,8 +77,9 @@ import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js';
       dataSetter(data.localData, htmlElements)
 
       //ANIMATION: this animation will be use for dev and production mode
-      GSDevTools.create();
-      timeline.add(animationFrame1())
+      GSDevTools.create()
+      devTimeline.add(animationFrame1())
+      devTimeline.add(carouselAmnimation(htmlElements))
 
       // document.addEventListener("DOMContentLoaded", () => {
       // });
