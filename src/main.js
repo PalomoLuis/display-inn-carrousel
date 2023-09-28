@@ -1,5 +1,6 @@
 import { DOMElements } from './data/domElements.js'
 import dataSetter from './data/dataSetter.js'
+import initialSetup from './script/initialSetup.js'
 import { animationFrame1 } from './animation/animationFrame1.js'
 import { endTimelineOtro } from './animation/endTimeline_outro.js'
 import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js'
@@ -38,6 +39,7 @@ import { carouselAmnimation } from './animation/carouselAnimation.js'
         if (entry.isIntersecting) {
           observer.unobserve(entry.target);
           setTimeout(() => {
+            initialSetup(htmlElements)
             timeline.add(animationFrame1())
             timeline.add(carouselAmnimation(htmlElements))
           }, 1000);
@@ -75,6 +77,7 @@ import { carouselAmnimation } from './animation/carouselAnimation.js'
       //IF NEEDED: content should be reflect in the API production code.
       data.localData = DATA.localData()
       dataSetter(data.localData, htmlElements)
+      initialSetup(htmlElements)
 
       //ANIMATION: this animation will be use for dev and production mode
       GSDevTools.create()

@@ -137,7 +137,6 @@
   position: absolute;
   top: 300px;
   left: 0;
-  border: 1px solid black;
   .main-carousel-container {
     width: 300px;
     height: 194px;
@@ -149,35 +148,41 @@
       height: 100%;
       position: absolute;
       top: 0;
-      left: 0;
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
+      left: -68px;
       /* flex-wrap: wrap; */
       .product-card {
-        height: 194px;
-        width: 153px;
-        .product-image {
-          height: 194px;
-          width: 153px;
-          object-fit: cover;
-          object-position: center 0%;
+        position: absolute;
+        height: 192px;
+        width: 84px;
+        .product-image-container {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 76px;
+          height: 108px;
+          .product-image {
+            height: inherit;
+            width: inherit;
+            object-fit: cover;
+            object-position: center 0%;
+          }
         }
       }
     }
     .carousel-next-button, .carousel-prev-button {
       position: absolute;
       z-index: 2;
-      bottom: 35px;
-      right: 17px;
-      width: 14px;
-      height: 15px;
+      bottom: 47px;
+      right: 24px;
+      width: 15px;
+      height: 16px;
       color: #1a1a1a66;
       background-color: #ffffffcc;
       cursor: pointer;
     }
     .carousel-prev-button {
       right: unset;
-      left: 17px;
+      left: 16px;
     }
   }
 }
