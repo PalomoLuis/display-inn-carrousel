@@ -9,7 +9,14 @@ function DOMElements () {
         productCards: document.querySelectorAll('.product-card'),
         productImages: document.querySelectorAll('.product-image'),
         carouselNextButton: document.querySelector('.carousel-next-button'),
-        carouselPrevButton: document.querySelector('.carousel-prev-button')
+        carouselPrevButton: document.querySelector('.carousel-prev-button'),
+        infoCarouselWrapper: document.querySelector('.info-carousel-wrapper'),
+        infoCards: document.querySelectorAll('.info-card'),
+        infoCardsBrands: document.querySelectorAll('.info-card .brand'),
+        infoCardsTitles: document.querySelectorAll('.info-card .title'),
+        infoCardsVatPrice: document.querySelectorAll('.info-card .price'),
+        infoCardsPrices: document.querySelectorAll('.info-card .sale_price'),
+        infoCardsVatLabel: document.querySelectorAll('.info-card .vat_label')
     }
     return elements
 }

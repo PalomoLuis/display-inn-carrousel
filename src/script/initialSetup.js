@@ -4,11 +4,13 @@
  * @returns 
  */
 export default function initialSetup (elements) {
-    const { productCards } = elements
+    const { productCards, infoCards } = elements
 
     const productCardsWidth = [84, 161]
     const productImageHeight = [108, 192]
     const productImageWidth = [76, 153]
+    
+    const infoCardWidth = 120
 
     //Organize the carousel cards in the correct position
     productCards.forEach((card, i) => {
@@ -23,5 +25,11 @@ export default function initialSetup (elements) {
         if(i === 1) gsap.set(card, { x: productCardsWidth[0] })
         if(i > 1) gsap.set(card, { x: (productCardsWidth[0] * i) + productCardsWidth[1] - productCardsWidth[0] })
     });
+
+    infoCards.forEach((card, i) => {
+        gsap.set(card, { x: infoCardWidth * i})
+    })
+
+    //TODO: forEach copy in infoCards check if it fits in the container, if not reduce the font-size. like ObjectFit.
 
 }

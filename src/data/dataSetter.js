@@ -46,5 +46,13 @@ export default function dataSetter( feed, elements ) {
       element.src = `${carouselData[num].image_link}`
       num++
     });
+    elements.infoCards.forEach((element, i) => {
+      if(num > 3) num = 0 
+      elements.infoCardsBrands[i].innerHTML = `${carouselData[num].brand}`
+      elements.infoCardsTitles[i].innerHTML = `${carouselData[num].title}`
+      elements.infoCardsPrices[i].innerHTML = `${carouselData[num].sale_price}`
+      elements.infoCardsVatPrice[i].innerHTML += `${carouselData[num].vat_label}`
+      num++
+    });
   
   }
