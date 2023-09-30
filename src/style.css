@@ -199,12 +199,10 @@
       position: absolute;
       top: 0;
       left: -120px;
-      height: inherit;
-      width: auto;
+      height: 79px;
+      width: calc(120px * 4);
       .info-card {
         position: absolute;
-        /* top: 0;
-        left: 0; */
         width: 120px;
         height: 79px;
         .brand {

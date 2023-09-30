@@ -84,8 +84,10 @@ function moveSlide(direction = 'left', speed) {
 
     //Organize the carousel cards in the correct position
     const beforeMainCard = direction === 'left' ? 2 : 0
+    const moveTo = direction === 'left' ? `-=` : `+=`
+    const beforeMainMove = direction === 'left' ? 2 : 1
+
     productCards.forEach((card, i) => {
-        //image slides
         if(i === 1) {
             gsap.to(card, { duration: speed, width: productCardsWidth[0] })
             gsap.to(card.firstElementChild, { duration: speed, height: productImageHeight[0], width: productImageWidth[0] })
@@ -94,16 +96,35 @@ function moveSlide(direction = 'left', speed) {
             gsap.to(card.firstElementChild, { duration: speed, height: productImageHeight[1], width: productImageWidth[1] })
         }
 
-        const moveTo = direction === 'left' ? `-=` : `+=`
-        const beforeMainMove = direction === 'left' ? 2 : 1
         if(i === beforeMainMove) gsap.to(card, { duration: speed, x: `${moveTo}${productCardsWidth[1]}` })
         else gsap.to(card, { duration: speed, x: `${moveTo}${productCardsWidth[0]}` })
-
-        //info slides
-        if(i === 2) gsap.fromTo(infoCards[i], { opacity: 0 }, { duration: speed / 2, opacity: 1, delay: speed / 2})
-        else gsap.fromTo(infoCards[i], {opacity: 1}, { duration: speed / 2, opacity: 0})
-        gsap.to(infoCards[i], { x: `${moveTo}${infoCardWidth}`})
     });
+
+    //Just for info
+    /*
+        TODO: Replace this conditional. Instead of removing the first/last element, just add an animation that selects the correct infocard and moves fromTo to make it looks like a carousel.
+
+        It could be like this:
+        const nextCard = select the infoCard following the current productCard.
+        gsap.fromTo(turn of the currentInfo card)
+        gsap.fromTo(turn on the nextCard)
+    */ 
+    if(direction === 'left') {
+        infoCardsParent.removeChild(infoCards[0])
+        infoCardsParent.appendChild(clonedInfoNode)
+        gsap.set(infoCards[infoCards.length - 1], { x: infoCardWidth * (infoCards.length - 1)})
+    } else {
+        infoCardsParent.removeChild(infoCards[infoCards.length - 1])
+        infoCardsParent.insertBefore(clonedInfoNode, infoCards[0])
+        gsap.set(infoCardsParent.firstElementChild, { x: '0'})
+    }
+
+    infoCards.forEach((card, i) => {
+        if(i === beforeMainCard) gsap.fromTo(card, { opacity: 0 }, { duration: speed / 3, opacity: 1, delay: speed / 2})
+        else gsap.fromTo(card, {opacity: 1}, { duration: speed / 3 * 2, opacity: 0})
+        
+        if(i !== 0) gsap.to(card, { x: `${moveTo}${infoCardWidth}`})
+    })
 
     // 2: Set the first element to the end.
     if(direction === 'left') {
@@ -111,23 +132,12 @@ function moveSlide(direction = 'left', speed) {
         productCardsParent.removeChild(productCards[0])
         productCardsParent.appendChild(clonedNode)
         gsap.set(productCardsParent.lastChild, { x: productCardsWidth[0] * (productCards.length - 2) + productCardsWidth[1], delay: speed + 0.01})
-        //info Cards
-        infoCardsParent.removeChild(infoCards[0])
-        infoCardsParent.appendChild(clonedInfoNode)
-        console.log(infoCardWidth * (infoCards.length - 1))
-        gsap.set(infoCardsParent.lastChild, { x: infoCardWidth * (infoCards.length - 1), delay: speed + 0.01, opacity: 1})
     } else {
         //product Cards
         productCardsParent.removeChild(productCards[productCards.length - 1])
         productCardsParent.insertBefore(clonedNode, productCards[0])
         gsap.set(productCardsParent.firstElementChild, { x: '0', delay: speed + 0.01})
-        //info Cards
-        infoCardsParent.removeChild(infoCards[infoCards.length - 1])
-        infoCardsParent.insertBefore(clonedInfoNode, infoCards[0])
-        gsap.set(infoCardsParent.firstElementChild, { x: '0', delay: speed + 0.01, opacity: 1})
     }
-    // setTimeout(() => {
-    // }, speed * 1000 + 1)
 }
 
 export { carouselAmnimation, moveSlide }
