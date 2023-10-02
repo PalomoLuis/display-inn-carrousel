@@ -21,7 +21,9 @@ function animationFrame1 () {
     tl.to('.frame1.whiteblock1', { duration: 1, y: -260, height: 260, ease: Power1.easeOut }, 'frame1+=4.5')
     tl.to('.frame1.title-container', { duration: 1.2, y: -280, opacity: 0, ease: Power1.easeOut }, 'frame1+=4.8')
 
+    tl.set('#carrousel', { zIndex: 9 }, 'frame1+=5')
     tl.to('#carrousel', { duration: 1.5, y: -(300 - 16), ease: Power2.easeOut }, 'frame1+=5')
+    tl.from('.pagination-block', { duration: 1.5, opacity: 0, ease: Power2.easeIn }, 'frame1+=5')
     tl.to('#carrousel', { duration: 1, onStart: moveSlide, onStartParams: ['left', 0.4]}, 'frame1+=5.5')
 
     return tl;

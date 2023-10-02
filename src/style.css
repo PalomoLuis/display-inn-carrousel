@@ -186,6 +186,27 @@
       right: unset;
       left: 16px;
     }
+    /* CAROUSEL PAGINATION */
+    .pagination-block {
+      position: absolute;
+      bottom: -4px;
+      left: 16px;
+      width: 153px;
+      height: 2px;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      .pagination-item {
+        background-color: #a1a1a140;
+        height: 100%;
+        width: 27px;
+        min-width: 10%;
+      }
+      .pagination-item:nth-child(2) {
+        min-width: 50%;
+      }
+    }
   }
   /* INFO CAROUSEL */
   .info-carousel-container {

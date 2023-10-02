@@ -4,7 +4,7 @@
  * @returns 
  */
 export default function initialSetup (elements) {
-    const { productCards, infoCards } = elements
+    const { productCards, infoCards, paginationItems } = elements
 
     const productCardsWidth = [84, 161]
     const productImageHeight = [108, 192]
@@ -29,6 +29,8 @@ export default function initialSetup (elements) {
     infoCards.forEach((card, i) => {
         gsap.set(card, { x: infoCardWidth * i})
     })
+
+    gsap.set(paginationItems[1], { width: 66, backgroundColor: '#1a1a1add' })
 
     //TODO: forEach copy in infoCards check if it fits in the container, if not reduce the font-size. like ObjectFit.
 

@@ -70,13 +70,9 @@ function carouselAmnimation (elements = null) {
  */
 function moveSlide(direction = 'left', speed) {
     const productCards = document.querySelectorAll('.product-card')
-    const infoCards = document.querySelectorAll('.info-card')
     const productCardsParent = productCards[0].parentNode
     const clonedNode = direction === 'left' ? productCards[0] : productCards[productCards.length - 1]
-    const infoCardsParent = infoCards[0].parentNode
-    const clonedInfoNode = direction === 'left' ? infoCards[0] : infoCards[infoCards.length - 1]
 
-    // 1: Move all one position to left/rioght
     const productCardsWidth = [84, 161]
     const productImageHeight = [108, 192]
     const productImageWidth = [76, 153]
@@ -99,7 +95,7 @@ function moveSlide(direction = 'left', speed) {
         if(i === beforeMainMove) gsap.to(card, { duration: speed, x: `${moveTo}${productCardsWidth[1]}` })
         else gsap.to(card, { duration: speed, x: `${moveTo}${productCardsWidth[0]}` })
 
-        //infoCards
+        //infoCards and pagination
         if(i === beforeMainCard) {
             //get the correct info card that matches with the product card
             const cardSelector = card.className.split(' ')[1]
@@ -108,16 +104,22 @@ function moveSlide(direction = 'left', speed) {
             let beforeCardId = cardId === 1 ? 4 : cardId - 1
             const infoCard = document.querySelector(`.info-card-${cardId}`)
             let infoBeforeCard = document.querySelector(`.info-card-${beforeCardId}`)
+            let pagItem = document.querySelector(`.pagination-item-${cardId}`)
+            let pagBeforeItem = document.querySelector(`.pagination-item-${beforeCardId}`)
             
-            //animate info card
             if(direction === 'left') {
                 gsap.fromTo(infoBeforeCard, { opacity: 1 }, { duration: speed / 4, opacity: 0, ease: Power1.easeOut })
                 gsap.fromTo(infoCard, { opacity: 0, x: infoCardWidth * 1.5}, { duration: speed, opacity: 1, x: infoCardWidth, ease: Power1.easeOut, delay: speed / 4 - 0.1 })
+                gsap.to(pagBeforeItem, { duration: speed, width: 27, backgroundColor: '#a1a1a140' })
+                gsap.to(pagItem, { duration: speed, width: 66, backgroundColor: '#1a1a1add' })
             } else {
                 beforeCardId = cardId === 4 ? 1 : cardId + 1
                 infoBeforeCard = document.querySelector(`.info-card-${beforeCardId}`)
+                pagBeforeItem = document.querySelector(`.pagination-item-${beforeCardId}`)
                 gsap.fromTo(infoBeforeCard, { opacity: 1 }, { duration: speed / 4, opacity: 0, ease: Power1.easeOut })
                 gsap.fromTo(infoCard, { opacity: 0, x: -(infoCardWidth * 1.5)}, { duration: speed, opacity: 1, x: infoCardWidth, ease: Power1.easeOut, delay: speed / 4 - 0.1 })
+                gsap.to(pagBeforeItem, { duration: speed, width: 27, backgroundColor: '#a1a1a140' })
+                gsap.to(pagItem, { duration: speed, width: 66, backgroundColor: '#1a1a1add' })
             }
         }
     });

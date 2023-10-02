@@ -16,7 +16,8 @@ function DOMElements () {
         infoCardsTitles: document.querySelectorAll('.info-card .title'),
         infoCardsVatPrice: document.querySelectorAll('.info-card .price'),
         infoCardsPrices: document.querySelectorAll('.info-card .sale_price'),
-        infoCardsVatLabel: document.querySelectorAll('.info-card .vat_label')
+        infoCardsVatLabel: document.querySelectorAll('.info-card .vat_label'),
+        paginationItems: document.querySelectorAll('.pagination-item')
     }
     return elements
 }
