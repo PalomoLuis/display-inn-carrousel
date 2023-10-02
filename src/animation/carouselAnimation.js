@@ -98,33 +98,29 @@ function moveSlide(direction = 'left', speed) {
 
         if(i === beforeMainMove) gsap.to(card, { duration: speed, x: `${moveTo}${productCardsWidth[1]}` })
         else gsap.to(card, { duration: speed, x: `${moveTo}${productCardsWidth[0]}` })
+
+        //infoCards
+        if(i === beforeMainCard) {
+            //get the correct info card that matches with the product card
+            const cardSelector = card.className.split(' ')[1]
+            const selectId = Number(cardSelector.slice(-1, cardSelector.length))
+            const cardId = selectId > 4 ? selectId - 4 : selectId
+            let beforeCardId = cardId === 1 ? 4 : cardId - 1
+            const infoCard = document.querySelector(`.info-card-${cardId}`)
+            let infoBeforeCard = document.querySelector(`.info-card-${beforeCardId}`)
+            
+            //animate info card
+            if(direction === 'left') {
+                gsap.fromTo(infoBeforeCard, { opacity: 1 }, { duration: speed / 4, opacity: 0, ease: Power1.easeOut })
+                gsap.fromTo(infoCard, { opacity: 0, x: infoCardWidth * 1.5}, { duration: speed, opacity: 1, x: infoCardWidth, ease: Power1.easeOut, delay: speed / 4 - 0.1 })
+            } else {
+                beforeCardId = cardId === 4 ? 1 : cardId + 1
+                infoBeforeCard = document.querySelector(`.info-card-${beforeCardId}`)
+                gsap.fromTo(infoBeforeCard, { opacity: 1 }, { duration: speed / 4, opacity: 0, ease: Power1.easeOut })
+                gsap.fromTo(infoCard, { opacity: 0, x: -(infoCardWidth * 1.5)}, { duration: speed, opacity: 1, x: infoCardWidth, ease: Power1.easeOut, delay: speed / 4 - 0.1 })
+            }
+        }
     });
-
-    //Just for info
-    /*
-        TODO: Replace this conditional. Instead of removing the first/last element, just add an animation that selects the correct infocard and moves fromTo to make it looks like a carousel.
-
-        It could be like this:
-        const nextCard = select the infoCard following the current productCard.
-        gsap.fromTo(turn of the currentInfo card)
-        gsap.fromTo(turn on the nextCard)
-    */ 
-    if(direction === 'left') {
-        infoCardsParent.removeChild(infoCards[0])
-        infoCardsParent.appendChild(clonedInfoNode)
-        gsap.set(infoCards[infoCards.length - 1], { x: infoCardWidth * (infoCards.length - 1)})
-    } else {
-        infoCardsParent.removeChild(infoCards[infoCards.length - 1])
-        infoCardsParent.insertBefore(clonedInfoNode, infoCards[0])
-        gsap.set(infoCardsParent.firstElementChild, { x: '0'})
-    }
-
-    infoCards.forEach((card, i) => {
-        if(i === beforeMainCard) gsap.fromTo(card, { opacity: 0 }, { duration: speed / 3, opacity: 1, delay: speed / 2})
-        else gsap.fromTo(card, {opacity: 1}, { duration: speed / 3 * 2, opacity: 0})
-        
-        if(i !== 0) gsap.to(card, { x: `${moveTo}${infoCardWidth}`})
-    })
 
     // 2: Set the first element to the end.
     if(direction === 'left') {
