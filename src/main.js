@@ -100,6 +100,11 @@ import { endTimeline } from './animation/endTimelineFrame3.js'
       devTimeline.add(carouselAmnimation(htmlElements))
       devTimeline.add(endTimeline(endTimelineVersion))
 
+      //EVENTS
+      const { carouselNextButton, carouselPrevButton } = htmlElements
+      carouselNextButton.addEventListener('click', () => devTimeline.pause())
+      carouselPrevButton.addEventListener('click', () => devTimeline.pause())
+
       // document.addEventListener("DOMContentLoaded", () => {
       // });
       
