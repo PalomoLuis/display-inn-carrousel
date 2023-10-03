@@ -68,7 +68,9 @@ export default function dataSetter( feed, elements ) {
     });
 
     //Frame3 Data Setter
-    if(additionalFunctional) elements.additionalFunctional.innerHTML = additionalFunctional
-    if(messagingLayer) elements.messagingLayer.innerHTML = messagingLayer //'Additional Functional Messaging Layer'
-    if(disclaimer) elements.disclaimer.innerHTML = disclaimer
+    if(additionalFunctional && messagingLayer) {
+      elements.additionalFunctional.innerHTML = additionalFunctional
+      elements.messagingLayer.innerHTML = messagingLayer //'Additional Functional Messaging Layer'
+      if(disclaimer) elements.disclaimer.innerHTML = '' //disclaimer
+    }
   }

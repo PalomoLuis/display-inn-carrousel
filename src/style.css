@@ -353,4 +353,5 @@
   left: 50%;
   top: 104px;
   transform: translateX(-50%);
+  transform-origin: 50% 50%;
 }

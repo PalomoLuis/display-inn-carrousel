@@ -37,6 +37,9 @@ export default function initialSetup (elements) {
     gsap.set(paginationItems[1], { width: 66, backgroundColor: '#1a1a1add' })
 
     //Final frame setup
+    if(additionalFunctional.innerText.length < 1 && messagingLayer.innerText.length < 1) {
+        gsap.set('.frame3.title-container', { display: 'none' })
+    }
     if (additionalFunctional.offsetHeight > 30 || messagingLayer.offsetHeight > 30) {
         gsap.set('.frame3.title-container', { top: 124, height: 96 })
     }

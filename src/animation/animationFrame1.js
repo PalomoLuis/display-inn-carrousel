@@ -1,14 +1,12 @@
 import { moveSlide } from "./carouselAnimation"
+import { logoMarkAnimation } from "./logoMarkAnimation"
 
 function animationFrame1 () {
     let tl = gsap.timeline()
 
     tl.add('frame1', 1)
     tl.to('.content', { duration: 0.1, opacity: 1 }, 'frame1')
-    tl.to('.frame1.logo-mark', { duration: 0.4, scale:1.4 }, 'frame1+=0.3') 
-    tl.to('.frame1.logo-mark', { duration: 0.4, scale: 1 }, '>')
-    tl.to('.frame1.logo-mark', { duration: 0.2, scale: 1.25 }, '>')
-    tl.to('.frame1.logo-mark', { duration: 0.2, scale: 0 }, '>')
+    tl.add(logoMarkAnimation(), 'frame1+=0.3')
   
     tl.from('.frame1.whiteblock2', { duration: 0.5, y: '100%', ease: Power1.easeOut }, 'frame1+=1.6')
     tl.to('.frame1.whiteblock1', { duration: 1, y: -78, ease: Power1.easeInOut }, 'frame1+=1.8')
