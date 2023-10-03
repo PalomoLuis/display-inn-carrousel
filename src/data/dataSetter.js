@@ -22,6 +22,8 @@ export default function dataSetter( feed, elements ) {
     const enlargedProduct = frame1Data.subline
     const focusedCopy = frame1Data.tagline
     const cta = frame1Data.cta
+    const logoZalandoBlack = 'https://cdn.revjet.com/s3/csp/1679927261226/Logo-Wordmark-noShadow.svg'
+    const arrowImage = 'https://cdn.revjet.com/s3/csp/1662732236308/arrow_grey.svg'
 
     //Carousel Data
     const carouselData = feed.filter(value => value.brand).slice(0, 4);
@@ -31,6 +33,11 @@ export default function dataSetter( feed, elements ) {
     currencySetter(carouselData, additionFeed)
 
     console.log('Carrousel data: ', carouselData)
+
+    //Frame3 Data
+    const additionalFunctional = frame1Data.subtitle || null
+    const messagingLayer = frame1Data.message || null
+    const disclaimer = frame1Data.disclaimer || '*Disclaimer, Legal claim for specific markets'
   
     //SETTING DATA
     elements.heroImage.style.backgroundImage = `url(${image1})`
@@ -38,6 +45,8 @@ export default function dataSetter( feed, elements ) {
     elements.enlargedProduct.innerText = enlargedProduct
     elements.focusedCopy.innerText = focusedCopy
     elements.cta.innerText = cta
+    elements.ctaArrow.src = arrowImage
+    elements.logo.src = logoZalandoBlack
 
     //Carousel Data setter
     let num = 0
@@ -51,8 +60,15 @@ export default function dataSetter( feed, elements ) {
       elements.infoCardsBrands[i].innerHTML = `${carouselData[num].brand}`
       elements.infoCardsTitles[i].innerHTML = `${carouselData[num].title}`
       elements.infoCardsPrices[i].innerHTML = `${carouselData[num].sale_price}`
-      elements.infoCardsVatPrice[i].innerHTML += `${carouselData[num].vat_label}`
+      elements.infoCardsVatLabel[i].innerHTML += `${carouselData[num].vat_label}`
+      // elements.additionalText[i].innerHTML = 'Preț inițial:'
+      // elements.originalPrice[i].innerHTML = '59,95 lei'
+      // elements.discountText[i].innerHTML = '-10%'
       num++
     });
-  
+
+    //Frame3 Data Setter
+    if(additionalFunctional) elements.additionalFunctional.innerHTML = additionalFunctional
+    if(messagingLayer) elements.messagingLayer.innerHTML = messagingLayer
+    if(disclaimer) elements.disclaimer.innerHTML = disclaimer
   }

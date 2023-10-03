@@ -97,20 +97,31 @@
   align-items: center;
   padding: 0 15px;
   z-index: 9;
+  .logo {
+    width: 65px;
+  }
 }
 
-.cta {
+.cta-container {
   position: relative;
   font-family: 'HelveticaNowText-Regular', sans-serif;
   font-size: 12px;
   letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .cta-arrow {
+    width: 12px;
+    margin-top: 1px;
+  }
 }
-.cta::after {
+/* .cta::after {
   content: url('./img/Icon-Arrow.svg');
+  content: url('https://cdn.revjet.com/s3/csp/1662732236308/arrow_grey.svg');
   position: absolute;
   top: 1px;
   right: -19px;
-}
+} */
 
 .frame1.title-container {
   position: absolute;
@@ -123,6 +134,7 @@
   letter-spacing: -0.2px;
   color: #1a1a1a;
   .campainClaim {
+    letter-spacing: -0.1px;
     font-family: 'HelveticaNowText-Regular', sans-serif;
     font-size: 12px;
   }
@@ -231,6 +243,8 @@
           font-family: "TiemposText-Regular", Times, serif;
           font-size: 12.7px;
           line-height: 13px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
         .title {
           font-family: 'HelveticaNowText-Regular', sans-serif;
@@ -238,18 +252,41 @@
           line-height: 14px;
           font-weight: 600;
           margin-top: 5px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          max-height: 38px;
         }
         .price {
           position: absolute;
-          top: 59px;
+          top: 60px;
           font-family: 'HelveticaNowText-Regular', sans-serif;
           font-size: 7px;
           line-height: 11px;
           color: #1a1a1a80;
+          display: flex;
+          gap: 7px;
           .sale_price {
-            font-size: 10px;
+            font-size: 11px;
+            font-weight: bold;
             letter-spacing: 0.5;
             color: #000000;
+            white-space: nowrap;
+          }
+        }
+        .discount-block {
+          position: absolute;
+          top: 70px;
+          font-family: 'HelveticaNowText-Regular', sans-serif;
+          font-size: 7px;
+          line-height: 11px;
+          color: #1a1a1a80;
+          display: flex;
+          gap: 3px;
+          .discount {
+            font-size: 9px;
           }
         }
       }
@@ -259,3 +296,22 @@
     }
   }
 } /* = CAROUSEL END = */
+
+/* LAST FRAME */
+.frame3.title-container {
+  position: absolute;
+  width: 100%;
+  height: 61px;
+  background-color: #ffffff;
+  top: 150px;
+  .additionalFunctional {
+    font-family: 'HelveticaNowText-Regular', sans-serif;
+    position: relative;
+    top: 7px;
+    left: 16px;
+    font-size: 17px;
+  }
+  .messagingLayer {
+    font-family: "TiemposText-Regular", Times, serif;
+  }
+}

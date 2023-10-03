@@ -1,10 +1,15 @@
 function DOMElements () {
     const elements = {
+        //Frame1
         heroImage: document.querySelector('.hero-image'),
         campainClaim: document.querySelector('.campainClaim'),
         enlargedProduct: document.querySelector('.enlargedProduct'),
         focusedCopy: document.querySelector('.focusedCopy'),
+        //general
         cta: document.querySelector('.cta'),
+        ctaArrow: document.querySelector('.cta-arrow'),
+        logo: document.querySelector('.logo'),
+        //Carousel
         mainCarouselItemWrapper: document.querySelector('.main-carousel-item-wrapper'),
         productCards: document.querySelectorAll('.product-card'),
         productImages: document.querySelectorAll('.product-image'),
@@ -17,7 +22,14 @@ function DOMElements () {
         infoCardsVatPrice: document.querySelectorAll('.info-card .price'),
         infoCardsPrices: document.querySelectorAll('.info-card .sale_price'),
         infoCardsVatLabel: document.querySelectorAll('.info-card .vat_label'),
-        paginationItems: document.querySelectorAll('.pagination-item')
+        paginationItems: document.querySelectorAll('.pagination-item'),
+        additionalText: document.querySelectorAll('.additional-text'),
+        originalPrice: document.querySelectorAll('.additional-text.original-price'),
+        discountText: document.querySelectorAll('.discount'),
+        //Frame 3 - final
+        additionalFunctional: document.querySelector('.additionalFunctional'),
+        messagingLayer: document.querySelector('.messagingLayer'),
+        disclaimer: document.querySelector('.disclaimer')
     }
     return elements
 }

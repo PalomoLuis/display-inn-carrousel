@@ -1,7 +1,4 @@
 function localData () {
-    // return {
-    //     "heroImage": "./src/img/hero_image.jpeg"
-    // }
     return [
         {
             "lp_url": "https://www.zalando.ro/barbati-noile-tendinte/",

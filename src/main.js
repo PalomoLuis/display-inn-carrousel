@@ -2,9 +2,8 @@ import { DOMElements } from './data/domElements.js'
 import dataSetter from './data/dataSetter.js'
 import initialSetup from './script/initialSetup.js'
 import { animationFrame1 } from './animation/animationFrame1.js'
-import { endTimelineOtro } from './animation/endTimeline_outro.js'
-import { endTimelineNoOtro } from './animation/endTimeline_noOutro.js'
 import { carouselAmnimation } from './animation/carouselAnimation.js'
+import { endTimeline } from './animation/endTimelineFrame3.js'
 
 (async function (currentScript) {
   //currentScript: is the last script where the js will run.
@@ -14,6 +13,11 @@ import { carouselAmnimation } from './animation/carouselAnimation.js'
   const assetContainer = document.querySelector(".banner")
   const htmlElements = {...DOMElements()}
   const data = {}
+  const endTimelineVersions = {
+    otroMessage: "outro-message",
+    noOtroMessage: "no-outro-message"
+  }
+  let endTimelineVersion;
 
   ///////////////// PRODUCTION MODE ///////////////////
   if (window.revjet && window.revjet.elements_api) {
@@ -76,13 +80,25 @@ import { carouselAmnimation } from './animation/carouselAnimation.js'
       //WRITE YOUR DEV CODE HERE.
       //IF NEEDED: content should be reflect in the API production code.
       data.localData = DATA.localData()
+
+      //Define final animation version
+      let otroMessages = {
+        additionalfunctional: data.localData.filter(el => el["subtitle"])[0]?.subtitle,
+        messagingLayer: data.localData.filter(el => el["message"])[0]?.message
+      }
+      endTimelineVersion = otroMessages.additionalfunctional && otroMessages.messagingLayer
+        ? endTimelineVersions.otroMessage
+        : endTimelineVersions.noOtroMessage
+
       dataSetter(data.localData, htmlElements)
       initialSetup(htmlElements)
+
 
       //ANIMATION: this animation will be use for dev and production mode
       GSDevTools.create()
       devTimeline.add(animationFrame1())
       devTimeline.add(carouselAmnimation(htmlElements))
+      devTimeline.add(endTimeline(endTimelineVersion))
 
       // document.addEventListener("DOMContentLoaded", () => {
       // });
